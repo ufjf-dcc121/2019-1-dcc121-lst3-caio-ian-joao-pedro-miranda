@@ -99,6 +99,62 @@
                 } 
             }
         }
+        function verificaVelha(){
+            for (var linha = 0; linha < 3; linha++) {
+                for (var coluna = 0; coluna < 3; coluna++) {
+                    if(tabuleiro[linha][coluna].innerText == ""){
+                        return false; 
+                    }
+                }
+            }
+            return true; 
+        } 
+        function verificaLinhas(){
+            //Linhas
+            for (var linha = 0; linha < 3; linha++) {
+                if(tabuleiro[linha][0].innerText!=""){
+                    if(tabuleiro[linha][0].innerText==tabuleiro[linha][1].innerText && tabuleiro[linha][1].innerText==tabuleiro[linha][2].innerText){
+                        tabuleiro[linha][0].style.color = "green";
+                        tabuleiro[linha][1].style.color = "green";
+                        tabuleiro[linha][2].style.color = "green";
+                        return true;
+                    }
+                }
+            }
+        }
+        function verificaColunas(){
+            //Colunas
+            for (var coluna = 0; coluna < 3; coluna++) {
+                if(tabuleiro[0][coluna].innerText!=""){
+                    if(tabuleiro[0][coluna].innerText==tabuleiro[1][coluna].innerText && tabuleiro[1][coluna].innerText==tabuleiro[2][coluna].innerText){
+                        tabuleiro[0][coluna].style.color = "green";
+                        tabuleiro[1][coluna].style.color = "green";
+                        tabuleiro[2][coluna].style.color = "green";
+                        return true;
+                    }
+                }
+            }
+        }
+        function verificaDiagonais(){
+            //Diagonal Primaria
+            if(tabuleiro[0][0].innerText!=""){
+                if(tabuleiro[0][0].innerText==tabuleiro[1][1].innerText && tabuleiro[1][1].innerText==tabuleiro[2][2].innerText){
+                    tabuleiro[0][0].style.color = "green";
+                    tabuleiro[1][1].style.color = "green";
+                    tabuleiro[2][2].style.color = "green";
+                    return true;
+                }
+            }
+            //Diagonal Secundaria
+            if(tabuleiro[0][2].innerText!=""){
+                if(tabuleiro[0][2].innerText==tabuleiro[1][1].innerText && tabuleiro[1][1].innerText==tabuleiro[2][0].innerText){
+                    tabuleiro[0][2].style.color = "green";
+                    tabuleiro[1][1].style.color = "green";
+                    tabuleiro[2][0].style.color = "green";
+                    return true;
+                }
+            }
+        }
         </script>
     </body>
 </html>
