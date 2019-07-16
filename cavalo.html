@@ -145,6 +145,66 @@
             }
             return possiveisMovimentos;      
         }
+        function colorirPossiveisCasas(vetor,cor){
+            //Caso não exista possibilidades e nem todos os campos foram utilizados, o jogador perdeu e o tabuleiro todo será colorido de vermelho
+            if(vetor.length==0 && camposCompecas.length!=64){
+                for (var linha = 0; linha < 8; linha++) {
+                    for (var coluna = 0; coluna < 8; coluna++) { 
+                        tabuleiroDoJogo[linha][coluna].elemento.style.backgroundColor = "rgba(255, 0, 0, 0.4)";
+                        
+                    }
+                }
+            }
+            //Caso não exista possibilidades e todos os campos foram utilizados, o jogador ganhou e o tabuleiro todo será colorido de verde
+            else if(vetor.length==0 && camposCompecas.length==64){
+                for (var linha = 0; linha < 8; linha++) {
+                    for (var coluna = 0; coluna < 8; coluna++) { 
+                        tabuleiroDoJogo[linha][coluna].elemento.style.backgroundColor = "rgba(0, 255, 0, 0.4)";
+                        
+                    }
+                }
+            }
+            else{
+                if(cor=="azul")
+                    for (var i = 0; i < vetor.length; i++) 
+                        tabuleiroDoJogo[vetor[i].linha][vetor[i].coluna].elemento.style.backgroundColor = "yellow";   
+                    
+                if(cor=="verde")
+                    for (var i = 0; i < vetor.length; i++) 
+                        tabuleiroDoJogo[vetor[i].linha][vetor[i].coluna].elemento.style.backgroundColor = "rgba(0, 255, 0, 0.4)";   
+            }
+        }
+        //Verifica se o campo clicado esta no vetor de possiveis jogadas
+        function verificaJogada(linha,coluna){
+            for (var i = 0; i < possiveisMovimentosCavalos.length; i++) {
+                if(possiveisMovimentosCavalos[i].linha == linha && possiveisMovimentosCavalos[i].coluna==coluna) 
+                    return true 
+            }
+            return false
+        }
+        function resetarJogo(){
+            tabuleiroDoJogo = [[],[],[],[],[],[],[],[]];
+            possiveisMovimentosCavalos = [];
+            camposCompecas = [];
+            quant = 0;
+            primeiroMov = true;
+            corpo.innerHTML="";
+            criaTab();
+            automatico = false;
+            botaoResolver.disabled = true;
+            corpo.style="pointer-events: true;" 
+        }
+        //
+        function resolverJogo(){
+            automatico=true;
+            var proximoMovimento = 0; 
+            var menor = 0;
+            var possibilidades;
+            //Bloqueio de clicks e dos botões para prevenção de bugs
+            corpo.style="pointer-events: none;"; 
+            botaoResolver.disabled = true;
+            botaoReeset.disabled = true;    
+        }
         </script>
     </body>
 </html>
