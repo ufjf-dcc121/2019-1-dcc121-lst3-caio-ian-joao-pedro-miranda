@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title>Cavalo</title>
     </head>
-    <style>
+        <style>
             strong{
                 font-size: 50px;
             }
@@ -101,15 +101,13 @@
                 
                 if(automatico) {
                     setTimeout(resolverJogo, 100);
+                    }
                 }
-                
-            }
-        } 
+            } 
         function verificaPossiveisMovimentos(linha,coluna){
-            //---Verificação de todas as possibildades de campos para o cavalo andar
             possivelLinha = linha-2; possivelColuna = coluna+1;
             var possiveisMovimentos=[];
-            if( possivelLinha>=0 && possivelLinha<=7 && possivelColuna>=0 && possivelColuna<=7 ) //Verificação se linha e coluna não saem do tabuleiro
+            if( possivelLinha>=0 && possivelLinha<=7 && possivelColuna>=0 && possivelColuna<=7 ) 
             possiveisMovimentos.push({linha:possivelLinha,coluna:possivelColuna});
             
             possivelLinha = linha-2; possivelColuna = coluna-1;
@@ -134,8 +132,6 @@
                 possivelLinha = linha+1; possivelColuna = coluna-2;
             if( possivelLinha>=0 && possivelLinha<=7 && possivelColuna>=0 && possivelColuna<=7 )
                 possiveisMovimentos.push({linha:possivelLinha,coluna:possivelColuna});
-            //-----Fim das verificações
-            //Filtro de campos já visitados. Caso uma casa foi pintada de cinza, ela é excluida do vetor de possibilidades
             for (var i = 0; i < possiveisMovimentos.length; i++) {
                 if(tabuleiroDoJogo[possiveisMovimentos[i].linha][possiveisMovimentos[i].coluna].elemento.style.backgroundColor == "rgba(68, 68, 68, 0.5)"){
                     possiveisMovimentos.splice(i,1);
@@ -146,7 +142,6 @@
             return possiveisMovimentos;      
         }
         function colorirPossiveisCasas(vetor,cor){
-            //Caso não exista possibilidades e nem todos os campos foram utilizados, o jogador perdeu e o tabuleiro todo será colorido de vermelho
             if(vetor.length==0 && camposCompecas.length!=64){
                 for (var linha = 0; linha < 8; linha++) {
                     for (var coluna = 0; coluna < 8; coluna++) { 
@@ -155,7 +150,6 @@
                     }
                 }
             }
-            //Caso não exista possibilidades e todos os campos foram utilizados, o jogador ganhou e o tabuleiro todo será colorido de verde
             else if(vetor.length==0 && camposCompecas.length==64){
                 for (var linha = 0; linha < 8; linha++) {
                     for (var coluna = 0; coluna < 8; coluna++) { 
@@ -174,7 +168,6 @@
                         tabuleiroDoJogo[vetor[i].linha][vetor[i].coluna].elemento.style.backgroundColor = "rgba(0, 255, 0, 0.4)";   
             }
         }
-        //Verifica se o campo clicado esta no vetor de possiveis jogadas
         function verificaJogada(linha,coluna){
             for (var i = 0; i < possiveisMovimentosCavalos.length; i++) {
                 if(possiveisMovimentosCavalos[i].linha == linha && possiveisMovimentosCavalos[i].coluna==coluna) 
@@ -194,13 +187,11 @@
             botaoResolver.disabled = true;
             corpo.style="pointer-events: true;" 
         }
-        //
         function resolverJogo(){
             automatico=true;
             var proximoMovimento = 0; 
             var menor = 0;
             var possibilidades;
-            //Bloqueio de clicks e dos botões para prevenção de bugs
             corpo.style="pointer-events: none;"; 
             botaoResolver.disabled = true;
             botaoReeset.disabled = true;    
