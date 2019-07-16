@@ -105,6 +105,46 @@
                 
             }
         } 
+        function verificaPossiveisMovimentos(linha,coluna){
+            //---Verificação de todas as possibildades de campos para o cavalo andar
+            possivelLinha = linha-2; possivelColuna = coluna+1;
+            var possiveisMovimentos=[];
+            if( possivelLinha>=0 && possivelLinha<=7 && possivelColuna>=0 && possivelColuna<=7 ) //Verificação se linha e coluna não saem do tabuleiro
+            possiveisMovimentos.push({linha:possivelLinha,coluna:possivelColuna});
+            
+            possivelLinha = linha-2; possivelColuna = coluna-1;
+            if( possivelLinha>=0 && possivelLinha<=7 && possivelColuna>=0 && possivelColuna<=7 )
+                possiveisMovimentos.push({linha:possivelLinha,coluna:possivelColuna});
+            possivelLinha = linha-1; possivelColuna = coluna+2;
+            if( possivelLinha>=0 && possivelLinha<=7 && possivelColuna>=0 && possivelColuna<=7 )
+                possiveisMovimentos.push({linha:possivelLinha,coluna:possivelColuna});
+            
+            possivelLinha = linha-1; possivelColuna = coluna-2;
+            if( possivelLinha>=0 && possivelLinha<=7 && possivelColuna>=0 && possivelColuna<=7 )
+                possiveisMovimentos.push({linha:possivelLinha,coluna:possivelColuna});
+            possivelLinha = linha+2; possivelColuna = coluna+1;
+            if( possivelLinha>=0 && possivelLinha<=7 && possivelColuna>=0 && possivelColuna<=7 )
+                possiveisMovimentos.push({linha:possivelLinha,coluna:possivelColuna});
+            possivelLinha = linha+2; possivelColuna = coluna-1;
+            if( possivelLinha>=0 && possivelLinha<=7 && possivelColuna>=0 && possivelColuna<=7 )
+                possiveisMovimentos.push({linha:possivelLinha,coluna:possivelColuna});
+            possivelLinha = linha+1; possivelColuna = coluna+2;
+            if( possivelLinha>=0 && possivelLinha<=7 && possivelColuna>=0 && possivelColuna<=7 )
+                possiveisMovimentos.push({linha:possivelLinha,coluna:possivelColuna});
+                possivelLinha = linha+1; possivelColuna = coluna-2;
+            if( possivelLinha>=0 && possivelLinha<=7 && possivelColuna>=0 && possivelColuna<=7 )
+                possiveisMovimentos.push({linha:possivelLinha,coluna:possivelColuna});
+            //-----Fim das verificações
+            //Filtro de campos já visitados. Caso uma casa foi pintada de cinza, ela é excluida do vetor de possibilidades
+            for (var i = 0; i < possiveisMovimentos.length; i++) {
+                if(tabuleiroDoJogo[possiveisMovimentos[i].linha][possiveisMovimentos[i].coluna].elemento.style.backgroundColor == "rgba(68, 68, 68, 0.5)"){
+                    possiveisMovimentos.splice(i,1);
+                    i--;
+                }
+                
+            }
+            return possiveisMovimentos;      
+        }
         </script>
     </body>
 </html>
