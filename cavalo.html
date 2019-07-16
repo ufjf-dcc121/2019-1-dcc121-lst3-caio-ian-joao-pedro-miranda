@@ -40,6 +40,23 @@
         </div>
         <button id="resetar">Resetar</button>
         <button id="resolver" disabled>Tentar Resolver</button>
-        
+
+        <script>
+            var tabuleiroDoJogo = [[],[],[],[],[],[],[],[]];
+            var possiveisMovimentosCavalos = [];
+            var camposCompecas = [];
+            var quant = 0;
+            var primeiroMov = true;
+            var automatico = false;
+            
+            //Referncias
+            var corpo = document.getElementById("corpo");
+            var botaoReeset = document.getElementById("resetar");
+            var botaoResolver = document.getElementById("resolver");
+            
+            botaoReeset.addEventListener("click",resetarJogo);
+            botaoResolver.addEventListener("click",resolverJogo);
+            criaTab();
+        </script>
     </body>
 </html>
