@@ -73,6 +73,32 @@
                     }
                 }
             }
+            function verificarVitoria(){
+            
+            if( (verificaLinhas() || verificaColunas() || verificaDiagonais()) && !fimDeJogo){
+                fimDeJogo=1;
+                if(jogador==1){ 
+                    placarO.innerText = Number(placarO.innerText)+1;
+                    mensagem.textContent = "Parabéns, " + document.getElementById("nomeO").textContent +"! Você ganhou essa partida!!!";
+                }
+                if(jogador==2){
+                    placarX.innerText = Number(placarX.innerText)+1;
+                    mensagem.textContent = "Parabéns, " + document.getElementById("nomeX").textContent +"! Você ganhou essa partida!!!";
+                }
+                novoJogo.disabled = false;
+            }
+            else {
+                if(verificaVelha() && !fimDeJogo){
+                    for (var linha = 0; linha < 3; linha++) 
+                        for (var coluna = 0; coluna < 3; coluna++) 
+                            tabuleiro[linha][coluna].style.color = "red";
+                    fimDeJogo=1;
+                    novoJogo.disabled = false;
+                    mensagem.textContent = "Deu velha!!!"
+                    grid.style.border = "2px solid red";
+                } 
+            }
+        }
         </script>
     </body>
 </html>
