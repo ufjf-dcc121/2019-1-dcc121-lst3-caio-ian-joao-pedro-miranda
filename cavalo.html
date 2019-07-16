@@ -57,6 +57,17 @@
             botaoReeset.addEventListener("click",resetarJogo);
             botaoResolver.addEventListener("click",resolverJogo);
             criaTab();
+
+            function criaTab(){
+            for (var linha = 0; linha < 8; linha++) {
+                for (var coluna = 0; coluna < 8; coluna++) {
+                    var novaDiv = document.createElement("div");
+                    novaDiv.addEventListener("click",acaoClick(linha,coluna)); 
+                    tabuleiroDoJogo[linha][coluna] = {linha:linha,coluna:coluna,elemento:novaDiv};
+                    corpo.appendChild(novaDiv);
+                    }
+                }
+            }   
         </script>
     </body>
 </html>
