@@ -34,7 +34,7 @@
         </div>
     </head>
     <body>
-        <scrip>
+        <script>
             var jogador=1;
             var tabuleiro = [[],[],[]];
             var fimDeJogo=0;
@@ -45,6 +45,34 @@
             var placarO = document.getElementById("pO");
             var novoJogo = document.getElementById("novoJogo");
             var mensagem = document.getElementById("mensagem");
+
+            criaTabuleiro();
+            novoJogo.addEventListener("click",resetarJogo);
+            //função para marcar X ou O
+            function jogada(){
+                console.log
+                if(this.innerText=="" && !fimDeJogo){
+                    if(jogador==1){
+                        this.innerText="X";
+                        jogador=2;
+                    }
+                    else{
+                        this.innerText="O";
+                        jogador=1;
+                    }
+                }
+                verificarVitoria();            
+            }
+            function criaTabuleiro(){
+                for (var linha = 0; linha < 3; linha++) {
+                    for (var coluna = 0; coluna < 3; coluna++) {
+                        var novaDiv = document.createElement("div");
+                        novaDiv.addEventListener("click",jogada); 
+                        tabuleiro[linha][coluna] = novaDiv;
+                        grid.appendChild(novaDiv);
+                    }
+                }
+            }
         </script>
     </body>
 </html>
