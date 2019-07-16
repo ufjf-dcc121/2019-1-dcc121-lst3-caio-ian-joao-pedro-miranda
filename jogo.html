@@ -155,6 +155,19 @@
                 }
             }
         }
+        function resetarJogo(){
+            //resetar tabuleiro
+            for (var linha = 0; linha < 3; linha++) {
+                for (var coluna = 0; coluna < 3; coluna++) {
+                    tabuleiro[linha][coluna].innerText = "";
+                    tabuleiro[linha][coluna].style.color ="";
+                    grid.style.border = "2px solid black";
+                }
+            }
+            fimDeJogo = 0;
+            novoJogo.disabled = true;
+            jogador=1;
+        }
         </script>
     </body>
 </html>
