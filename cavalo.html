@@ -67,7 +67,44 @@
                     corpo.appendChild(novaDiv);
                     }
                 }
-            }   
+            } 
+            function acaoClick(linha,coluna){
+            return function(){
+                if(primeiroMov){
+                    botaoResolver.disabled = false;
+                    primeiroMov = false;
+                    
+                    
+                    quant++;
+                    this.textContent = quant;
+                    this.style.backgroundColor = "rgba(0, 0, 255, 0.6)";
+                    
+                    camposCompecas.push(this);
+                    possiveisMovimentosCavalos=verificaPossiveisMovimentos(linha,coluna);
+                    colorirPossiveisCasas(possiveisMovimentosCavalos,"verde");
+                }
+                else{
+                    if(verificaJogada(linha,coluna)){
+                        colorirPossiveisCasas(possiveisMovimentosCavalos,"azul");
+                        camposCompecas[camposCompecas.length-1].style.backgroundColor = "rgba(68, 68, 68, 0.5)";
+                        quant++;
+                        this.textContent = quant;
+                        this.style.backgroundColor = "rgba(0, 0, 255, 0.6)";
+                    
+                        camposCompecas.push(this);
+                        possiveisMovimentosCavalos=verificaPossiveisMovimentos(linha,coluna);
+                        colorirPossiveisCasas(possiveisMovimentosCavalos,"verde");
+                        
+                    }
+                    
+                }
+                
+                if(automatico) {
+                    setTimeout(resolverJogo, 100);
+                }
+                
+            }
+        } 
         </script>
     </body>
 </html>
